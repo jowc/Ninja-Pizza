@@ -31,10 +31,10 @@ mysqli_close($connect);
 <head>
     <link rel="stylesheet" type="text/css" href="public/assets/style.css" />
     <!-- <link rel="stylesheet" type="text/css" href="test.css"/> -->
-    <title> <?php echo $title; ?></title>
+    <title> Ninja Pizza </title>
 </head>
 
-<body class="w-full min-h-full flex flex-col justify-start inline-flex items-start flex-none">
+<body class="w-full min-h-full flex flex-col justify-start inline-flex items-start">
 
     <?php include "public/components/navigation/header.php" ?>
 
