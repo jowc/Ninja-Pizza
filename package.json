@@ -1,0 +1,16 @@
+{
+  "name": "php",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "dependencies": {
+    "tailwindcss": "^1.8.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build-css": "tailwindcss build src/style.css -o public/assets/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
