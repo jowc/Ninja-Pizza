@@ -35,6 +35,8 @@
         </div>
     </div>
 
+    <?php include 'public/components/navigation/footer.php' ?>
+
     <?php
 
     $errors = array('title' => '', 'ingredients' => '');
@@ -48,7 +50,7 @@
         }
         if (!empty($_GET['title']) && !empty($_GET['ingredient'])) {
             // header("location:index.php");
-            echo $_GET['title'] . " is ready";
+            echo htmlspecialchars($_GET['title']) . " is ready";
         }
     }
 
