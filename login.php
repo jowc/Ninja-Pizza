@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <?php include 'public/components/navigation/header.php' ?>
+    <?php include 'public/components/navigation/footer.php' ?>
 
 </body>
 

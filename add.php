@@ -21,7 +21,10 @@
                     <input type="text" id="title" name="title" placeholder="Ingredient title*" class=" pl-3 py-3 shadow rounded w-6/12" required>
                 </div>
                 <div class="mt-4">
-                    <input type="text" id="Ingredient" name="Ingredient" placeholder="Ingredients eg maize, rice*" class=" pl-3 py-3 shadow rounded w-6/12" required>
+                    <input type="email" id="email" name="email" placeholder="Email address*" class=" pl-3 py-3 shadow rounded w-6/12" required>
+                </div>
+                <div class="mt-4">
+                    <input type="text" id="Ingredient" name="ingredient" placeholder="Ingredients eg maize, rice*" class=" pl-3 py-3 shadow rounded w-6/12" required>
                 </div>
                 <div class="mt-6">
                     <button name="button" class=" px-4 py-2 shadow rounded antialiased">Add Pizza</button>
@@ -39,7 +42,11 @@
 
     <?php
 
-    $errors = array('title' => '', 'ingredients' => '');
+    include "public/config/db.php";
+
+    $errors = array('title' => '', 'ingredients' => '', 'email' => '');
+
+    // check if form has been sent with data 
 
     if (isset($_GET['button'])) {
         if (empty($_GET['title'])) {
@@ -48,9 +55,29 @@
         if (empty($_GET['ingredient'])) {
             $errors['ingredients'] = "you must fill comma seperated values";
         }
-        if (!empty($_GET['title']) && !empty($_GET['ingredient'])) {
-            // header("location:index.php");
-            echo htmlspecialchars($_GET['title']) . " is ready";
+        if (empty($_GET['email'])) {
+            $errors['email'] = "fill in your email";
+        }
+
+        // check if form elements contains data or not.
+
+        if (array_filter($errors)) {
+            header('location: index.php');
+        }
+
+        if (!empty($_GET['title']) && !empty($_GET['ingredient']) && !empty($_GET['email'])) {
+            $title = mysqli_escape_string($connect, $_GET['title']);
+            $email = mysqli_escape_string($connect, $_GET['email']);
+            $ingredient = mysqli_escape_string($connect, $_GET['ingredient']);
+
+            //sql insert query
+            $sql = "INSERT INTO pizzas(title, ingredients, email) VALUES('$title', '$ingredient', '$email')";
+            if (mysqli_query($connect, $sql)) {
+                //success
+                header("location:index.php");
+            } else {
+                echo "Error: " . mysqli_error($connect);
+            }
         }
     }
 

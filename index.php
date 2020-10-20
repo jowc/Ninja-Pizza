@@ -1,10 +1,6 @@
 <?php
 //conect to database
-$connect = mysqli_connect('localhost', 'testadmin', 'testadmin', 'ninja_pizza');
-
-if (!$connect) {
-    echo "Connection error: " . mysqli_connect_error();
-}
+include "public/config/db.php";
 
 //write query for all pizzas
 $sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
@@ -34,7 +30,7 @@ mysqli_close($connect);
     <title> Ninja Pizza </title>
 </head>
 
-<body class="w-full min-h-full flex flex-col justify-start inline-flex items-start">
+<body class="w-full min-h-full">
 
     <?php include "public/components/navigation/header.php" ?>
 
